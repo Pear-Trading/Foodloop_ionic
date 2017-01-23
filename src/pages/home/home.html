@@ -1,0 +1,52 @@
+/* this page defines the layout of the home page*/
+/* should contained a login screen */
+/* @username and password if user has one */
+/* if not, re-direct to invitation token page to set up a new account */
+
+<!-- Defines what is in the header -->
+<ion-header>
+  <ion-navbar>
+    
+    <button ion-button menuToggle icon-only>
+      <ion-icon name='menu'></ion-icon>
+    </button>
+
+    <ion-title>
+      Foolloop 
+    </ion-title>
+
+
+  </ion-navbar>
+</ion-header>
+
+<!--Defines the actual content of this page -->
+<ion-content padding>
+  
+  <!--Defines the login in information -->
+  <ion-list>
+
+    <ion-item>
+      <ion-label fixed>Username</ion-label>
+      <ion-input type="text"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label fixed>Password</ion-label>
+      <ion-input type="password"></ion-input>
+    </ion-item>
+
+  </ion-list>
+
+  <div padding>
+    <button ion-button color="primary" block>Sign In</button>
+  </div>
+
+  <div padding>
+    <button ion-button [navPush]="tokenPage" color="secondary" block> Create an account </button>
+  </div>
+
+
+</ion-content>
+
+
+<ion-nav id="nav" #content [root]="rootPage"></ion-nav>
