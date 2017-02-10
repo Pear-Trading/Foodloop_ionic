@@ -1,0 +1,119 @@
+
+<ion-header>
+  <ion-toolbar>
+
+    <button ion-button menuToggle >
+    <ion-icon name='menu'></ion-icon>
+
+    </button>
+  </ion-toolbar>
+
+</ion-header>
+
+<ion-content>
+ 
+ <ion-card class="simpleDashBoard">
+  <ion-grid>
+  
+    <!-- Hello user -->
+    <ion-row class="greetingRow">  
+      <ion-item>
+        <ion-avatar item-left><img src="assets/img/icon1.png"></ion-avatar>
+        <h1 class="title"> John Smith </h1>
+        <h2 class="subhead"> test007@test.com</h2>
+      </ion-item>
+    </ion-row>
+
+
+    <!-- shows pear points -->
+    <ion-row class="statusRow">
+      <ion-col witdh-70 color="primary"> 
+        <div class="header">My Pear Points</div>
+        <div class="bigContent"> 
+          8888.88 
+          <ion-badge item-right>(+18%)</ion-badge>
+        </div>
+
+      </ion-col>
+ 
+      <ion-col width-30 color="danger"> 
+        <div class="header">My Ranking</div>
+        <div class="bigContent"> 
+          5th 
+          <ion-icon name="md-trending-up"></ion-icon>
+        </div>
+      </ion-col>
+    </ion-row>
+
+
+
+
+  </ion-grid>
+
+    <!-- display inter-tab for controlling chart display -->
+    <ion-row class="innerTab">
+      <ion-segment [(ngModel)]="status" mode="md" >
+        <ion-segment-button value="Daily"  (ionSelect)="goToSlide(0)">Daily</ion-segment-button>
+        <ion-segment-button value="Weekly" (ionSelect)="goToSlide(1)">Weekly</ion-segment-button>
+        <ion-segment-button value="Monthly"(ionSelect)="goToSlide(2)">Monthly</ion-segment-button>
+      </ion-segment>
+    </ion-row>
+    
+    
+    <!-- display charts -->
+    <!-- ideally, this would be a quick and simple grasp of user overview-->
+
+    <ion-row class="innerChart" >
+        <ion-slides pager (ionSlideDidChange)="slideChanged()"> 
+          <ion-slide>
+            <canvas #lineCanvas></canvas> 
+          </ion-slide>
+          
+          <ion-slide>
+            <canvas #barCanvas></canvas>
+            <p>2</p>
+          </ion-slide>
+          
+          <ion-slide>
+            <canvas #pieCanvas></canvas> 
+            <p>3</p>
+          </ion-slide>
+        </ion-slides>
+
+
+    </ion-row>
+
+ </ion-card>
+
+<!-- Exchange point section, showing list of item -->
+<!--<ion-card class="rewardSection">
+  <ion-label class="rewardHeader"> Rewards </ion-label>
+  <ion-list>
+    
+    <ion-item>
+      Reward Type 1   
+    </ion-item>
+
+    <ion-item>
+      Reward Type 2   
+    </ion-item>
+  
+    <ion-item>
+      Reward Type 3   
+    </ion-item>
+  </ion-list>
+</ion-card>-->
+
+
+</ion-content>
+
+<ion-footer class="pearUpCtrl">
+  <ion-toolbar>
+
+
+    <button ion-button [navPush]="receiptPage"  large icon-right full > Play 
+      <ion-icon name="flame" md="md-flame" color="danger"> </ion-icon>
+
+    </button>
+  </ion-toolbar>
+</ion-footer>

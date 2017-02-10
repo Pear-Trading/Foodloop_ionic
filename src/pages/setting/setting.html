@@ -1,0 +1,44 @@
+<!--
+  Generated template for the Setting page.
+
+  See http://ionicframework.com/docs/v2/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>User profile</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <ion-list>
+    <ion-item>
+      <ion-label>Online Mode</ion-label>
+      <ion-toggle [(ngModel)]="onlineMode"></ion-toggle>
+    </ion-item>
+
+
+    <ion-item>
+      <ion-label (click)="goToAccountPage()" >Account</ion-label>  
+      <ion-icon name="send"></ion-icon>
+    </ion-item>
+
+    <ion-item>  
+      <ion-label>GPS Tracking</ion-label>
+      <ion-toggle [(ngModel)]="gpsTracking"></ion-toggle>
+    </ion-item>
+    
+    
+    <ion-item>
+      <ion-label (click)="signout()" >Sign Out</ion-label>  
+      <ion-icon name="send"></ion-icon>
+    </ion-item>
+
+
+
+  </ion-list>
+
+</ion-content>

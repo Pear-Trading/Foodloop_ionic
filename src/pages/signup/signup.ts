@@ -1,39 +1,91 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
+import { PeopleService} from '../../providers/people-service';
+import { UserData} from '../../providers/user-data';
 import { Validators, FormBuilder,FormGroup } from '@angular/forms'; // angular js 2 form dependency
-/*
-  Generated class for the Signup page.
+import { IndexPage } from '../index/index';
 
-  See http://ionicframework.com/docs/v2/components/#navigation for more info on
-  Ionic pages and navigation.
-*/
 @Component({
   selector: 'page-signup',
-  templateUrl: 'signup.html',  
+  templateUrl: 'signup.html',
+  providers: [PeopleService]  
 })
 
 export class SignupPage {
   signup: FormGroup;
-  constructor(private formBuilder: FormBuilder,public navCtrl: NavController, public navParams: NavParams) {
+  token: string;
+  constructor(
+    private formBuilder: FormBuilder,
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    private peopleService: PeopleService,
+    public userData: UserData) {
+      
+      this.token = navParams.get('token'); 
       /* Specifying the sign up form and validation setting */
       this.signup = this.formBuilder.group({
-      username:['',Validators.required],
-      name:[''],
-      age:[''],
-      email:[''],
-      postcode:[''],
-      gender:[''],
-      shoppingType:[''],
-      newPassword:[''],
-      passwordConfirmation:[''],
-    });
-  }
+      username:['',
+         Validators.compose([Validators.maxLength(30)
+        ])
+      ],
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad SignupPage');
-  }
+      name:['',
+ 
+      ],
+      
+      age:[''],
+      
+      email:['',
+        Validators.compose([
+			  Validators.required,
+			  Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')])
+      ],
+      
+      postcode:[''],  
+      
+      gender:[''],
+      
+      shoppingType:[''],
+      
+      password:[''],
+      
+      passwordConfirmation:[''],
+    }); 
+
+  } 
 
   signupForm(){
-    console.log(this.signup.value);
+    alert(this.token);
+    // create json data to upload
+    var registerData= JSON.stringify({
+      usertype: 'customer',
+      token: this.token,
+      username: this.signup.value.username,
+      email: this.signup.value.email,
+      postcode: this.signup.value.postcode,
+      password: this.signup.value.password,
+      age: this.signup.value.age
+    }); 
+    console.log(registerData);
+    // var registerData= JSON.stringify({
+    //   username: this.signup.value.username,
+    //   name: this.signup.value.name,
+    //   token: this.userData.getUserToken(),
+    //   email: this.signup.value.email,
+    //   postcode: this.signup.value.postcode,
+    //   age: this.signup.value.age,
+    //   shoppingType: this.signup.value.shoppingType,
+    //   password: this.signup.value.password,  
+    // }); 
+
+    this.peopleService.register(registerData).subscribe(
+      data => {alert("Successful");
+                this.userData.signup(this.signup.value.username);
+                this.navCtrl.push(IndexPage);
+               console.log(data);
+              },
+      error=> {alert(error);
+              console.log(error)}
+    );
   }
 }

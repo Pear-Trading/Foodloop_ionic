@@ -1,0 +1,61 @@
+
+<ion-header>
+  <ion-toolbar>
+    <button ion-button menuToggle >
+    <ion-icon name='menu'></ion-icon>
+
+    </button>
+  </ion-toolbar>
+</ion-header>
+<ion-content> 
+<div padding>
+<ion-searchbar (ionInput)="getItems($event)"></ion-searchbar>
+
+  <!-- Segment-->
+  <!-- | All | option 2 | optino 3-->
+  <ion-segment color="primary" mode="md" [(ngModel)]="listType">
+    <ion-segment-button value="All">
+      All
+    </ion-segment-button>
+    <ion-segment-button value="Local">
+      Local
+    </ion-segment-button>
+    <ion-segment-button value="Monthly">
+      Monthly
+    </ion-segment-button>
+  </ion-segment>
+
+
+<div [ngSwitch]="listType" class="listCtrl">
+
+  <ion-list *ngSwitchCase="'All'"  >
+    <ion-item [ngClass]="getClass(item)" *ngFor="let item of sampleUserData "  >
+    
+          <ion-grid>
+            <ion-row >
+            <button>{{item}}</button>
+            <ion-col width-10><p>{{item.currentPos}}<p></ion-col>
+            <ion-col *ngIf="item.previousPos!=0" width-20><ion-icon [name]="getIcon(item)"></ion-icon></ion-col>
+            <ion-col *ngIf="item.previousPos==0"  width-20><ion-badge color="danger">NEW</ion-badge></ion-col> 
+            <ion-col *ngIf="item.currentPos==4"  width-50> <p>You<p> </ion-col> 
+            <ion-col *ngIf="item.currentPos!=4" width-50>{{item.username}}</ion-col> 
+            <ion-col width-20>{{item.pearPoint}}</ion-col>
+  
+            </ion-row>
+          </ion-grid>
+
+    </ion-item> 
+  </ion-list>
+
+  <ion-list *ngSwitchCase="'Monthly'">
+    <ion-item>
+      <h2>Ruby</h2>
+    </ion-item>
+  </ion-list>
+
+</div>
+
+</div>
+
+
+</ion-content>

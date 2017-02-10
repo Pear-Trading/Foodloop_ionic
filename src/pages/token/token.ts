@@ -1,22 +1,24 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
-import { SignupPage } from '../signup/signup';
-/*
-  Generated class for the Token page.
+import { PeopleService } from '../../providers/people-service';
+import { UserData } from '../../providers/user-data';
+import { SignupPage} from '../signup/signup';
 
-  See http://ionicframework.com/docs/v2/components/#navigation for more info on
-  Ionic pages and navigation.
-*/
 @Component({
   selector: 'page-token',
-  templateUrl: 'token.html'
-})
+  templateUrl: 'token.html',
+  providers: [PeopleService,UserData]
+})  
 export class TokenPage {
-  signupPage = SignupPage;
-  constructor(public navCtrl: NavController, public navParams: NavParams) {}
+  private token: any;
+  constructor(
+    public navCtrl: NavController, 
+    public navParams: NavParams, 
+    private peopleService: PeopleService,
+    public userData: UserData) {}
   
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad TokenPage');
+  // pass the token to the next page 
+  setToken(){
+    this.navCtrl.push(SignupPage,{token:this.token}); 
   }
-
 }

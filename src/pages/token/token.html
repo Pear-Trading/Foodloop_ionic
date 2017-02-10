@@ -17,12 +17,12 @@
 
   <ion-item>
     <ion-label floating> e.g. apple007 </ion-label>
-    <ion-input type="text"></ion-input>
+    <ion-input [(ngModel)]= "token" type="text"></ion-input>
   </ion-item> 
   
   <div padding>
 
-    <button ion-button [navPush]= "signupPage" color="primary" block> Next </button>
+    <button ion-button (click)="setToken()" color="primary" block> Next </button>
   </div>
 
 

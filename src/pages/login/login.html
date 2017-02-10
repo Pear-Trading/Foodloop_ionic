@@ -1,0 +1,49 @@
+ <!--Defines what is in the header -->
+<ion-header class="header" padding mode="md">
+  <ion-navbar >  
+    
+    <button ion-button menuToggle >
+      <ion-icon name='menu'></ion-icon>
+
+    </button>
+
+    <ion-title>
+      Foodloop Login
+      <ion-badge item-right id="version" color="secondary" > Beta 0.1</ion-badge>
+    </ion-title>
+
+  </ion-navbar>
+</ion-header>
+
+<!--Defines the actual content of this page -->
+<ion-content color="primary">
+ 
+  <!--Defines the login in information -->
+  <ion-list class="loginRow">
+    <ion-item>
+      <ion-label stacked>Username/email</ion-label>
+      <ion-input type="text" [(ngModel)]="username" ></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label stacked>Password </ion-label>
+      <ion-input type="password" [(ngModel)]="password" ></ion-input>
+    </ion-item>
+
+  </ion-list>
+  
+<!--<ion-item>
+  <ion-label>Remember Me</ion-label>
+  <ion-checkbox color="dark" checked="true" [(ngModel)]="rememberMe"></ion-checkbox>
+</ion-item>-->
+
+
+  <div padding>
+    <button ion-button (click)="signin()" color="primary" block>Sign In</button>
+       <button ion-button [navPush]="tokenPage" color="secondary" block> Create an account </button>
+  </div>
+
+
+
+</ion-content>
+
