@@ -9,8 +9,7 @@ $ npm install -g ionic cordova
 # Step 1. Create a blank template using 
   $ "ionic start Foodloop blank --v2"
 # Step 2. 
-  3.1 Download src and config files from Github
-  3.2 copu and replace src folder and config file of the Foodloop folder
+  Download src and config files from Github. copy and replace src folder and config file of the Foodloop folder
 # Step 3. Testing platforms command
   Localhost - $ "ionic serve" 
   Android - $ "ionic build android"
